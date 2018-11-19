@@ -3,7 +3,7 @@ console.log('js');
 $(document).ready(function() {
 
     //import guest info
-    let guestsArr = $.getJSON("scripts/Guests.json", function( obj ){
+    let guestsArr = $.getJSON("scripts/json/Guests.json", function( obj ){
         console.log('guest data:', obj);
         
         //populate guest drop down
@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
 
     //import company info
-    let companyArr = $.getJSON("scripts/Companies.json", function( obj ){
+    let companyArr = $.getJSON("scripts/json/Companies.json", function( obj ){
         console.log('company data:', obj);
 
         //populate company drop down
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 
     //import message template
-    let messageTempArr = $.getJSON("scripts/MessageTemplate.json", function( obj ){
+    let messageTempArr = $.getJSON("scripts/json/MessageTemplate.json", function( obj ){
         console.log('message template:', obj);
 
         $.each(obj, function(key, value) {
