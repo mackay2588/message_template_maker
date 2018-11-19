@@ -122,6 +122,10 @@ $(document).ready(function() {
         }
 
         console.log(completeMessage);
+
+        $("#messageTemplate").empty();
+        $("#messageTemplate").append(`<p>${completeMessage}</p>`);
+
         return completeMessage;
 
     }//end sendMessage
