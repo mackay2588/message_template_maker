@@ -1,3 +1,4 @@
+
 console.log('js');
 $(document).ready(function() {
 
@@ -27,8 +28,14 @@ $(document).ready(function() {
 
 
     //import message template
-    let messageTempObj = $.getJSON("scripts/MessageTemplate.json", function( data ){
-        console.log('message template:', data);
+    let messageTempArr = $.getJSON("scripts/MessageTemplate.json", function( obj ){
+        console.log('message template:', obj);
+
+        $.each(obj, function(key, value) {
+            let optionId = 'message' + value.id;
+
+            $("#messageDropDown").append(`<option id="${optionId}" value=${value.id}>${value.ready}</option>`)
+        });
     });
 
     //on submit of send message form
@@ -42,6 +49,9 @@ $(document).ready(function() {
 
         let chosenGuestId = $("#guestDropDown").val();
 
+        let chosenMessageId = $("#messageDropDown").val();
+
+        //object class to get info
         class Info {
             constructor(infoType, infoId){
                 this.infoType = infoType,
@@ -61,23 +71,63 @@ $(document).ready(function() {
             }//end getInfo
         }
 
+        // class Info instances
         let company = new Info(companyArr, chosenCompanyId);
         let guest = new Info(guestsArr, chosenGuestId);
+        let message = new Info(messageTempArr, chosenMessageId);
 
-        console.log("company info:", company.getInfo());
-        console.log("guestInfo", guest.getInfo());
+        let companyInfo = company.getInfo();
+        let guestInfo = guest.getInfo();
+        let messageInfo = message.getInfo();
+
+        let timeZone = companyInfo.timezone;
+        console.log('timezone', timeZone);
+
+        let currentTime = new Date().getTime();
+
+        currentTime = moment(currentTime).tz(timeZone).format();
+  
+        currentTime = moment(currentTime).format('HH');
+
+        let greeting = '';
+        let firstName = guestInfo.firstName;
+
+        if(currentTime >= 1 && currentTime < 12){
+            greeting = `Good Morning ${firstName},`
+        }
+        else if(currentTime >= 12 && currentTime < 17){
+            greeting = `Good Afternoon ${firstName},`
+        }
+        else{
+            greeting = `Good Evening ${firstName},`
+        }
+        
+        //alternative message from text area input
+        let altMessage = '';
+
+        altMessage = $("#altMessage").val();
+        console.log(altMessage)
+
+        //variable to hold entire message
+        let completeMessage = '';
+
+        //check for alt message
+        if(altMessage.length > 0){
+            
+            completeMessage = `${greeting} ${altMessage}`;
+        }
+        else{
+            
+            completeMessage = `${greeting} and welcome to ${companyInfo.company}. Room ${guestInfo.reservation.roomNumber} ${messageInfo.ready} ${messageInfo.ending}`;
+        }
+
+        console.log(completeMessage);
+        return completeMessage;
 
     }//end sendMessage
 
 });
 
-
-//calculate time of day
-const currentTime = new Date().getTime();
-
-let timeFormat = moment(1486852373 * 1000).format('LLL');
-
-console.log('current time:', timeFormat);
 
 
 

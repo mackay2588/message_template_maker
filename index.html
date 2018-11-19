@@ -9,8 +9,9 @@
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!--moment js-->
-    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
-    <script src="moment-timezone-with-data.js"></script>
+    <script src="https://rawgit.com/moment/moment/2.6.0/min/moment.min.js"></script>
+    <script src="scripts/moment-timezone-with-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.1/moment-range.js"></script>
     <!--local JS-->
     <script type="text/javascript" src="scripts/index.js"></script>
 </head>
@@ -19,8 +20,12 @@
     <form onsubmit="event.preventDefault()">
         <label for="#companyDropDown">Company: </label>
         <select id="companyDropDown"></select>
-        <label for="#guestDropDown">Guest:</label>
+        <label for="#guestDropDown">Guest: </label>
         <select id="guestDropDown"></select>
+        <label for="#messageDropDown">Message: </label>
+        <select id="messageDropDown"></select>
+        <label for="#altMessage">OR Alternative message:</label>
+        <textarea id="altMessage"></textarea>
         <button id="submit">Send Message</button>
     </form>
 </body>

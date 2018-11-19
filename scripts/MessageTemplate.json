@@ -1,13 +1,13 @@
 [
     {
-        "greeting": {
-            "morning": "Good Morning",
-            "afternoon": "Good Afternoon",
-            "evening": "Good Evening"
-        },
-        "room": "Room ",
+        "id": 1,
         "ready": " is now ready for you. ",
         "ending": "Enjoy your stay and let us know if you need anything."
+    },
+    {
+        "id": 2,
+        "ready": " is not ready yet. ",
+        "ending": "Please let us know if their is anything we can do for you while you wait."
     }
 ]
    
