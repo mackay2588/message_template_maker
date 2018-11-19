@@ -126,6 +126,9 @@ $(document).ready(function() {
         $("#messageTemplate").empty();
         $("#messageTemplate").append(`<p>${completeMessage}</p>`);
 
+        //empty alt message field
+        $("#altMessage").val('');
+
         return completeMessage;
 
     }//end sendMessage
