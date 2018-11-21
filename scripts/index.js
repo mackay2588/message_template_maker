@@ -1,4 +1,3 @@
-
 console.log('js');
 $(document).ready(function() {
 
@@ -123,6 +122,7 @@ $(document).ready(function() {
 
         console.log(completeMessage);
 
+        //append message to the DOM
         $("#messageTemplate").empty();
         $("#messageTemplate").append(`<p>${completeMessage}</p>`);
 
